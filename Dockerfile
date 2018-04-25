@@ -22,4 +22,4 @@ VOLUME /srv/report
 EXPOSE 7890
 
 ENTRYPOINT ["/sbin/tini", "--"]
-CMD ["goaccess", "--no-global-config", "--config-file=/srv/data/goaccess.conf"]
+CMD ["goaccess", "--no-global-config", "--config-file=/srv/data/goaccess.conf", "--real-time-html"]
