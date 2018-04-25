@@ -12,9 +12,6 @@ ARG runtime_deps="tini ncurses libintl gettext openssl-dev geoip zlib libbz2 zli
 
 RUN apk update && \
     apk add -u $runtime_deps $build_deps && \
-    cd /srv/goaccess/data/ && \
-    wget -N http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz && \
-    gunzip GeoLiteCity.dat.gz && \
     ([ -d $TCB ] || wget $TCB_URL && tar -xzf $TCB.tar.gz) && \
     cd $TCB && ./configure --prefix=/usr --enable-off64 --enable-fastest && \
     make && make install && cd .. && \
@@ -22,6 +19,9 @@ RUN apk update && \
     ./configure --enable-utf8 --with-openssl --enable-geoip=legacy --enable-debug --enable-tcb=btree  && \
     make && \
     make install && \
+    cd /srv/goaccess/data/ && \
+    wget -N http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz && \
+    gunzip GeoLiteCity.dat.gz && \
     apk del $build_deps && \
     rm -rf /var/cache/apk/* /tmp/goaccess/* /goaccess
 # goaccess.conf > geoip-database /srv/data/GeoLiteCity.dat
