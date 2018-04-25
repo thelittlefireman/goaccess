@@ -19,6 +19,7 @@ RUN apk update && \
     ./configure --enable-utf8 --with-openssl --enable-geoip=legacy --enable-debug --enable-tcb=btree  && \
     make && \
     make install && \
+    mkdir -p /srv/goaccess/data/ && \
     cd /srv/goaccess/data/ && \
     wget -N http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz && \
     gunzip GeoLiteCity.dat.gz && \
