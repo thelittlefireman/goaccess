@@ -4,19 +4,19 @@ FROM alpine:edge
 COPY . /goaccess
 WORKDIR /goaccess
 
-ARG TCB=tokyocabinet-1.4.48
-ARG TCB_URL=http://fallabs.com/tokyocabinet/$TCB.tar.gz
+#ARG TCB=tokyocabinet-1.4.48
+#ARG TCB_URL=http://fallabs.com/tokyocabinet/$TCB.tar.gz
 
 ARG build_deps="build-base ncurses-dev autoconf automake git gettext-dev geoip-dev wget"
 ARG runtime_deps="tini ncurses libintl gettext openssl-dev geoip zlib libbz2 zlib-dev bzip2-dev"
 
 RUN apk update && \
     apk add -u $runtime_deps $build_deps && \
-    ([ -d $TCB ] || wget $TCB_URL && tar -xzf $TCB.tar.gz) && \
-    cd $TCB && ./configure --prefix=/usr --enable-off64 --enable-fastest && \
-    make && make install && cd .. && \
+   # ([ -d $TCB ] || wget $TCB_URL && tar -xzf $TCB.tar.gz) && \
+    #cd $TCB && ./configure --prefix=/usr --enable-off64 --enable-fastest && \
+    #make && make install && cd .. && \
     autoreconf -fiv && \
-    ./configure --enable-utf8 --with-openssl --enable-geoip=legacy --enable-debug --enable-tcb=btree  && \
+    ./configure --enable-utf8 --with-openssl --enable-geoip=legacy --enable-debug && \ #--enable-tcb=btree  && \
     make && \
     make install && \
     mkdir -p /srv/goaccess/data/ && \
