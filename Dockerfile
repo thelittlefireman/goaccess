@@ -25,7 +25,7 @@ RUN apk update && \
     gunzip GeoLiteCity.dat.gz && \
     apk del $build_deps && \
     rm -rf /var/cache/apk/* /tmp/goaccess/* /goaccess
-    goaccess.conf > geoip-database /srv/data/GeoLiteCity.dat
+    #goaccess.conf > geoip-database /srv/data/GeoLiteCity.dat
 
 VOLUME /srv/data
 VOLUME /srv/logs
