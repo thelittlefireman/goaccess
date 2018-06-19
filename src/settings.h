@@ -113,6 +113,7 @@ typedef struct GConf_
   char *spec_date_time_format;      /* date format w/ specificity */
   char *spec_date_time_num_format;  /* numeric date format w/ specificity */
   char *log_format;                 /* log format */
+  char *iconfigfile;                /* config file path */
 
   const char *debug_log;            /* debug log path */
   const char *geoip_database;       /* geoip db path */
@@ -120,7 +121,6 @@ typedef struct GConf_
   const char *html_custom_js;       /* custom JS */
   const char *html_prefs;           /* default HTML JSON preferences */
   const char *html_report_title;    /* report title */
-  const char *iconfigfile;          /* config file path */
   const char *invalid_requests_log; /* invalid lines log path */
   const char *pidfile;              /* daemonize pid file path */
 
@@ -137,6 +137,7 @@ typedef struct GConf_
   /* User flags */
   int store_accumulated_time;       /* store accumulated processing time in tcb */
   int all_static_files;             /* parse all static files */
+  int anonymize_ip;                 /* anonymize ip addresses */
   int append_method;                /* append method to the req key */
   int append_protocol;              /* append protocol to the req key */
   int client_err_to_unique_count;   /* count 400s as visitors */
